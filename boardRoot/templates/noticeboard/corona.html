@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>코로나가 먼지!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Black+And+White+Picture&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Nanum+Brush+Script&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Nanum+Brush+Script&family=Nanum+Gothic&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+h1 {
+  margin: 2em 0 1.5em 0;
+}
+header {
+}
+div_01{
+float:right;
+}
+div_02 {
+float:left;
+}
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+   background: #B62A51;
+  float: right;
+}
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+li a.active {
+  background-color: #555;
+  color: white;
+  text-decoration:none;
+}
+#main-menu > li {
+  float: left;
+  position: relative;
+  font-family: 'Nanum Gothic';
+}
+#main-menu > li > a {
+  font-size: 1.5rem;
+  color: rgba(255,255,255,0.85);
+  text-align: left;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  display: block;
+  padding: 5px 90px;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+}
+#main-menu > li:nth-child(1) > a {
+}
+#sub-menu {
+  position: absolute;
+  background: #020202;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.15s ease-in;
+  font-color: #FDFCFC
+}
+#sub-menu > li {
+  padding: 10px 25px;
+  border-bottom: 0px solid rgba(0,0,0,0.15);
+}
+#sub-menu > li >  a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+}
+#sub-menu > li > hover a{
+ text-decoration: none;
+   background:#777777;
+  font-color: #FEFEFE;
+  font-size:0.5em;
+}
+#main-menu > li:hover #sub-menu {
+  opacity: 1;
+  visibility: visible;
+}
+section {
+}
+     .container { margin: 0; padding: 32px; width: 1024px; }
+     .sec { margin-top: 16px; }
+     .sec:first-child { margin-top: 0; }
+     .title { font-size: 18px; font-weight: 700; }
+     .content { margin-top: 8px; }
+     .list-box { display: flex; border: 1px solid #aaa; }
+     .list-box .list-item { width: 50%; }
+     .list-box .list-item:first-child { margin-right: 8px; }
+     .list-item dt { padding: 8px 16px; font-weight: 700; color: #888; background-color: #ddd; width: 990px}
+     .list-item dd { margin: 0; }
+     .list-item iframe { padding: 0 8px; width: 100%; height: 400px; box-sizing: border-box; }
+     .list-box2 { display: flex; border: 1px solid #aaa; }
+     .list-box2 .list-item:first-child { margin-right: 8px; }
+     .list-item dt { padding: 8px 16px; font-weight: 700; color: #888; background-color: #ddd; }
+     .list-item dd { margin: 0; }
+     .list-item img { padding: 34px; width:168%; }
+</style>
+</head>
+<body bgcolor="#EFDED4">
+{% load static %}
+<div class="div_01" float="right" ><img src={% static "media/mask.jpg" %} margin-right: 0px; width="900" height="200" ></div>
+<header style="left: 0px; width: 450px; bottom: 430px; font-size: 1.8em; font-weight: bold; position: absolute;">
+</header>
+<nav role="navigation">
+  <ul id="main-menu">
+<li><a href="{% url 'noticeboard:intro' %}"><b style= font-family:'Sunflower';>코로나가 뭔지</b></a>
+    <li><a href="{% url 'noticeboard:pm10' %}">미세먼지</a>
+      <ul id="sub-menu">
+        <li><a  href="{% url 'noticeboard:pm10' %}" aria-label="subemnu" >미세먼지</a></li>
+        <li><a href="{% url 'noticeboard:pm25' %}" aria-label="subemnu">초미세먼지</a></li>
+        <li><a href="{% url 'noticeboard:dust10_yearly' %}" aria-label="subemnu">년도별 미세먼지 비교</a></li>
+        <li><a href="{% url 'noticeboard:dust25_yearly' %}" aria-label="subemnu">년도별 초미세먼지 비교</a></li>
+      </ul>
+    </li>
+    <li><a href="{% url 'noticeboard:tmp' %}">기온</a>
+    </li>
+    <li><a href="{% url 'noticeboard:covid' %}">코로나</a>
+      <ul id="sub-menu">
+        <li><a href="{% url 'noticeboard:corona' %}" aria-label="subemnu">지역,월별 코로나 확진자</a></li>
+        <li><a href="{% url 'noticeboard:correlation_dust10' %}" aria-label="subemnu">코로나와 미세먼지의 상관관계</a></li>
+        <li><a href="{% url 'noticeboard:correlation_dust25' %}" aria-label="subemnu">코로나와 초미세먼지의 상관관계</a></li>
+        <li><a href="{% url 'noticeboard:correlation_tmp' %}" aria-label="subemnu">코로나와 기온의 상관관계</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    <main class="container">
+        <section class="sec">
+            <div class="contents">
+                <dl class="list-box">
+                    <div class="list-item">
+                        <dt>코로나: 지역, 월별 확진자</dt>
+                                            <br>&nbsp;&nbsp;&nbsp;<b>지역:</b>&nbsp;&nbsp;&nbsp;<select id="sel", onchange="changeImage()">
+        <option value={% static "media/busan.png" %}>부산</option>
+        <option value={% static "media/chungbuk.png" %}>충북</option>
+        <option value={% static "media/chungnam.png" %}>충남</option>
+        <option value={% static "media/daegu.png" %}>대구</option>
+        <option value={% static "media/daejeon.png" %}>대전</option>
+        <option value={% static "media/gwangju.png" %}>광주</option>
+        <option value={% static "media/incheon.png" %}>인천</option>
+        <option value={% static "media/jeju.png" %}>제주</option>
+        <option value={% static "media/jeonbuk.png" %}>전북</option>
+        <option value={% static "media/jeonnam.png" %}>전남</option>
+        <option value={% static "media/kangwon.png" %}>강원</option>
+        <option value={% static "media/kyoungbuk.png" %}>경북</option>
+        <option value={% static "media/kyoungnam.png" %}>경남</option>
+        <option value={% static "media/kyounggi.png "%}>경기</option>
+        <option value={% static "media/sejong.png" %}>세종</option>
+        <option value={% static "media/seoul.png" %}>서울</option>
+        <option value={% static "media/ulsan.png" %}>울산</option>
+    </select>
+<div>
+    <p><img id="img" src={% static 'media/busan.png' %} alt="My image"></p>
+</div>
+
+            </div>
+            </dl>
+            </div>
+        </section>
+
+    </main>
+</div>
+    <script>
+    function changeImage(){
+        let sel=document.querySelector("#sel");
+        let img=document.querySelector("#img");
+        let index=sel.selectedIndex;
+        img.src=sel.options[index].value;
+        }
+    </script>
+</body>
+</html>
